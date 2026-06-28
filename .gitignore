@@ -1,0 +1,15 @@
+node_modules/
+.DS_Store
+*.log
+*.db
+*.db-shm
+*.db-wal
+auth*.json
+account*.json
+storage/
+tool-output/
+snapshot/
+repos/
+.env
+.env.*
+!.env.example
