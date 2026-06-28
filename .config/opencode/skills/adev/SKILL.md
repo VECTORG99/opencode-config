@@ -9,9 +9,9 @@ Use A-Dev as the operating method for AI-assisted delivery.
 
 ## Source of truth
 
-- Local upstream clone: `/home/vector/.local/share/adev/`
+- Local upstream clone: `$HOME/.local/share/adev/`
 - Full rules for this skill: `ADEV.md` in this skill directory
-- Starter kit: `/home/vector/.local/share/adev/starter-kit/`
+- Starter kit: `$HOME/.local/share/adev/starter-kit/`
 
 ## Operating flow
 

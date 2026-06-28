@@ -9,7 +9,7 @@ Configuración personal de OpenCode para desarrollo agentico profesional.
 - Plugins: ponytail, forge, memory, safety, browser, skills, review helper, log sanitizer
 - Agentes: `eyes`, `VEC`
 - Skills: A-Dev, TDD, Caveman, Skill Creator
-- Overrides por proyecto: Yap, DataGestor, krono, homedir
+- Overrides de ejemplo por tipo de proyecto: Python agent, data app, full-stack web, A-Dev project
 
 ## Inventario importante
 
@@ -72,10 +72,10 @@ Configuración personal de OpenCode para desarrollo agentico profesional.
 
 | Proyecto | Override | Notas |
 |---|---|---|
-| Yap | `project-overrides/Yap/opencode.json` | ADEV + Semgrep enabled |
-| DataGestor | `project-overrides/DataGestor/opencode.json` | ADEV + Semgrep enabled; Postgres no inventado |
-| krono | `project-overrides/krono/opencode.json` | ADEV + Playwright enabled |
-| homedir | `project-overrides/homedir/opencode.json` | ADEV + Semgrep enabled |
+| Python agent | `examples/project-overrides/python-agent/opencode.json` | ADEV + Semgrep enabled |
+| Data app | `examples/project-overrides/data-app/opencode.json` | ADEV + Semgrep enabled; Postgres disabled by default |
+| Full-stack web | `examples/project-overrides/fullstack-web/opencode.json` | ADEV + Playwright enabled |
+| A-Dev project | `examples/project-overrides/adev-project/opencode.json` | ADEV + Semgrep enabled |
 
 ### Deliberadamente excluido
 
@@ -99,10 +99,97 @@ Luego reinicia OpenCode.
 
 ## Requisitos manuales
 
-Fish:
+### Secretos / variables de entorno
+
+Este repo **no incluye secretos**. Cada usuario debe configurar sus propios tokens localmente.
+
+| Variable | Obligatoria | Para qué sirve | Cómo obtenerla |
+|---|---:|---|---|
+| `GITHUB_TOKEN` | Sí, si usarás GitHub MCP | Permite a OpenCode leer repos, issues, PRs y code search vía GitHub MCP | GitHub → Settings → Developer settings → Personal access tokens |
+| `OPENAI_API_KEY` | No | Solo si reactivas `opencode-mem` auto-capture con OpenAI | OpenAI dashboard |
+| `ANTHROPIC_API_KEY` | No | Solo si reactivas `opencode-mem` auto-capture con Anthropic | Anthropic console |
+| `GROQ_API_KEY` | No | Alternativa barata para auto-capture si configuras Groq | Groq console |
+| `POSTGRES_URL` | No | Solo si habilitas MCP Postgres para un proyecto | Tu DB local/remota |
+| `SEMGREP_APP_TOKEN` | No | Solo si usas Semgrep Cloud; local Docker no lo requiere | Semgrep dashboard |
+
+### GitHub MCP recomendado
+
+Permisos mínimos sugeridos para token clásico:
+
+- `repo` si quieres trabajar con repos privados
+- `read:org` si necesitas orgs privadas
+- `workflow` solo si vas a tocar GitHub Actions
+
+En Fish:
 
 ```fish
 set -Ux GITHUB_TOKEN "tu_token_de_github"
+```
+
+Verificar sin imprimir el token:
+
+```fish
+test -n "$GITHUB_TOKEN"; and echo set; or echo missing
+gh auth status
+```
+
+Si prefieres usar GitHub CLI:
+
+```fish
+gh auth login
+set -Ux GITHUB_TOKEN (gh auth token)
+```
+
+### Postgres MCP opcional
+
+El MCP Postgres viene desactivado por defecto para no romper instalaciones.
+
+Para activarlo en un proyecto, crea `.opencode/opencode.json`:
+
+```json
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "postgres": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-postgres",
+        "postgresql://readonly_user:REPLACE_ME@localhost:5432/db"
+      ],
+      "enabled": true
+    }
+  }
+}
+```
+
+Mejor práctica: usar un usuario **read-only**.
+
+### opencode-mem auto-capture opcional
+
+`opencode-mem` queda instalado, pero `autoCaptureEnabled` está en `false` para evitar errores 401.
+
+Para activarlo, edita:
+
+```text
+~/.config/opencode/opencode-mem.jsonc
+```
+
+Y configura provider/model/API key. Ejemplo con variable de entorno:
+
+```jsonc
+"autoCaptureEnabled": true,
+"memoryProvider": "openai-chat",
+"memoryModel": "gpt-4o-mini",
+"memoryApiUrl": "https://api.openai.com/v1",
+"memoryApiKey": "env://OPENAI_API_KEY"
+```
+
+En Fish:
+
+```fish
+set -Ux OPENAI_API_KEY "tu_api_key"
 ```
 
 No guardes tokens en este repo.
@@ -110,12 +197,13 @@ No guardes tokens en este repo.
 ## Estructura
 
 ```text
-.config/opencode/        # config global
-project-overrides/       # .opencode por proyecto
+.config/opencode/            # config global portable
+examples/project-overrides/   # overrides de ejemplo por tipo de proyecto
 ```
 
 ## Notas
 
 - `semgrep` y `postgres` quedan desactivados globalmente.
 - `opencode-mem` tiene auto-capture desactivado para evitar 401 sin API key.
-- El path local de ponytail apunta a `/home/vector/.local/share/ponytail/...`.
+- `install.sh` clona Ponytail y A-Dev en `$HOME/.local/share/` si faltan.
+- `install.sh` reemplaza `__HOME__` por tu `$HOME` real en `opencode.json`.
