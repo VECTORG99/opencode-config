@@ -207,3 +207,20 @@ examples/project-overrides/   # overrides de ejemplo por tipo de proyecto
 - `opencode-mem` tiene auto-capture desactivado para evitar 401 sin API key.
 - `install.sh` clona Ponytail y A-Dev en `$HOME/.local/share/` si faltan.
 - `install.sh` reemplaza `__HOME__` por tu `$HOME` real en `opencode.json`.
+
+## Fuentes y créditos
+
+Esta configuración junta trabajo propio con herramientas/skills de terceros. Revisa también [`THIRD_PARTY_NOTICES.md`](./THIRD_PARTY_NOTICES.md).
+
+| Componente | Fuente |
+|---|---|
+| A-Dev / `@adev` | https://github.com/scanalesespinoza/adev |
+| Ponytail | https://github.com/DietrichGebert/ponytail |
+| Caveman | https://github.com/JuliusBrussee/caveman |
+| Defending Code Reference Harness | https://github.com/anthropics/defending-code-reference-harness |
+| Context7 MCP | https://github.com/upstash/context7 |
+| GitHub MCP Server | https://github.com/github/github-mcp-server |
+| Playwright MCP | https://github.com/microsoft/playwright-mcp |
+| MCP reference servers | https://github.com/modelcontextprotocol/servers |
+
+Los paquetes npm configurados se instalan bajo sus propias licencias desde npm/OpenCode al iniciar o ejecutar OpenCode. Este repo no incluye tokens, credenciales ni datos privados.
