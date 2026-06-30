@@ -40,6 +40,8 @@ Configuración personal de OpenCode para desarrollo agentico profesional.
 | context7 | enabled | Documentación actual de librerías |
 | github | enabled | Repos, PRs, issues, code search; requiere `GITHUB_TOKEN` |
 | playwright | enabled | Browser automation y E2E |
+| gh_grep | enabled | Búsqueda pública de código en GitHub, sin auth |
+| sequential-thinking | enabled | Razonamiento extendido para problemas complejos |
 | semgrep | disabled | SAST/security scanning bajo demanda |
 | postgres | disabled | DB read-only bajo demanda por proyecto |
 
@@ -48,7 +50,14 @@ Configuración personal de OpenCode para desarrollo agentico profesional.
 | Skill | Uso |
 |---|---|
 | `@adev` | A-Dev, SDD, baseline, evidencia, handoff |
-| `tdd` | Red-green-refactor |
+| `@tdd` | Red-green-refactor |
+| `@python-pro` | Python 3.11+ tipado, async, pytest, mypy |
+| `@fastapi-expert` | FastAPI async, Pydantic v2, DI, testing |
+| `@rag-architect` | RAG pipelines, vector stores, reranking, eval |
+| `@security-auditor` | OWASP, CWE, STRIDE, SAST review |
+| `@playwright-expert` | E2E browser automation con Playwright |
+| `@typescript-pro` | TypeScript 5.x strict, Zod, vitest |
+| `@game-developer` | Roblox/Godot/Unity, game loop, ECS, AI |
 | `opencode-skill-creator` | Crear/evaluar/optimizar skills |
 | `caveman*` | Respuestas comprimidas, review, commit, stats |
 | `cavecrew` | Delegación comprimida a subagentes |
@@ -59,6 +68,13 @@ Configuración personal de OpenCode para desarrollo agentico profesional.
 |---|---|
 | `eyes` | OCR/screenshot/visión de pantalla |
 | `VEC` | Guardia contra commits/pushes/borrados peligrosos |
+
+### Comandos slash
+
+| Comando | Uso |
+|---|---|
+| `/common-ground` | Surface y track de supuestos del proyecto antes de trabajar |
+| `/caveman*` | Comunicación comprimida y helpers |
 
 ### Metodologías configuradas
 
@@ -197,7 +213,7 @@ No guardes tokens en este repo.
 ## Estructura
 
 ```text
-.config/opencode/            # config global portable
+.config/opencode/            # config global portable (incluye tui.json)
 examples/project-overrides/   # overrides de ejemplo por tipo de proyecto
 ```
 
@@ -218,9 +234,12 @@ Esta configuración junta trabajo propio con herramientas/skills de terceros. Re
 | Ponytail | https://github.com/DietrichGebert/ponytail |
 | Caveman | https://github.com/JuliusBrussee/caveman |
 | Defending Code Reference Harness | https://github.com/anthropics/defending-code-reference-harness |
+| Skills adaptadas (python-pro, fastapi-expert, rag-architect, security-auditor, playwright-expert, typescript-pro, game-developer) | https://github.com/Axel-DaMage/opencode-config (origen) / https://github.com/Jeffallan (autor skills) |
 | Context7 MCP | https://github.com/upstash/context7 |
 | GitHub MCP Server | https://github.com/github/github-mcp-server |
 | Playwright MCP | https://github.com/microsoft/playwright-mcp |
 | MCP reference servers | https://github.com/modelcontextprotocol/servers |
+| Sequential Thinking MCP | `@modelcontextprotocol/server-sequential-thinking` en npm |
+| gh_grep MCP | https://mcp.grep.app |
 
 Los paquetes npm configurados se instalan bajo sus propias licencias desde npm/OpenCode al iniciar o ejecutar OpenCode. Este repo no incluye tokens, credenciales ni datos privados.

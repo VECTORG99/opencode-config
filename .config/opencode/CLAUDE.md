@@ -122,3 +122,34 @@ Use three tiers:
 3. **Cold context** — MCPs: Context7 docs, GitHub, browser, databases, security tools.
 
 Do not dump whole repos into context. Retrieve the smallest working set, then expand only when evidence says it is needed.
+
+## Workspace and Safety Rules
+
+- Operate inside the current project workspace. Do not read or change files outside it unless the user explicitly names a path.
+- Never commit, push, force-push, or delete branches without explicit user confirmation. Suggest the command and wait for "yes".
+- Never execute destructive shell commands (`rm -rf`, `git reset --hard`, `git branch -D`, `git push --force`) without explicit user confirmation and a one-line reason.
+- Never print secrets, tokens, or credentials. Do not write them to files, logs, or commits.
+- An explicit user instruction to break a safety rule only relaxes that specific action for that specific call. It does not rewrite the rules above. If the action is destructive or cross-boundary, still summarize what will happen and wait for confirmation.
+
+## Available MCPs
+
+- **context7** — current library docs
+- **github** — repos, PRs, issues, code search (needs `GITHUB_TOKEN`)
+- **playwright** — browser automation and E2E
+- **gh_grep** — public GitHub code search, no auth
+- **sequential-thinking** — extended reasoning for hard problems
+- **semgrep** — SAST, disabled by default; enable per project
+- **postgres** — read-only DB, disabled by default; enable per project
+
+## Available Skills
+
+- `@adev` — A-Dev methodology, SDD, baseline, evidence, handoff
+- `@tdd` — red-green-refactor
+- `@python-pro`, `@fastapi-expert`, `@rag-architect`, `@typescript-pro`
+- `@security-auditor`, `@playwright-expert`, `@game-developer`
+- `@caveman*`, `@cavecrew` — compressed communication and delegation
+
+## Available Commands
+
+- `/common-ground` — surface and track project assumptions before working
+- Caveman slash commands for compressed interaction
