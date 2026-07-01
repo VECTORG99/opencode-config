@@ -51,7 +51,7 @@
     },
     "computer-use-linux": {
       "type": "local",
-      "command": ["computer-use-linux", "mcp"],
+      "command": ["node", "/home/vector/.local/share/mise/installs/node/latest/bin/computer-use-linux-mcp.mjs"],
       "enabled": true
     },
     "semgrep": {
