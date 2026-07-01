@@ -5,10 +5,12 @@ Configuración personal de OpenCode para desarrollo agentico profesional.
 ## Qué incluye
 
 - A-Dev (`@adev`) y metodología SDD
-- MCPs: Context7, GitHub, Playwright, Semgrep/Postgres desactivados por defecto
-- Plugins: ponytail, forge, memory, safety, browser, skills, review helper, log sanitizer
+- MCPs: Context7, GitHub, Playwright, gh_grep, sequential-thinking; Semgrep/Postgres desactivados por defecto
+- Plugins: ponytail, forge, memory, safety, browser, skills, review helper, log sanitizer, oh-my-opencode-slim
 - Agentes: `eyes`, `VEC`
-- Skills: A-Dev, TDD, Caveman, Skill Creator
+- Skills: A-Dev, TDD, Caveman, Skill Creator, python-pro, fastapi-expert, rag-architect, security-auditor, playwright-expert, typescript-pro, game-developer
+- Comando `/common-ground` para surface de supuestos
+- `tui.json` con keybinds y scroll
 - Overrides de ejemplo por tipo de proyecto: Python agent, data app, full-stack web, A-Dev project
 
 ## Inventario importante
