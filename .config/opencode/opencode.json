@@ -49,6 +49,11 @@
       ],
       "enabled": true
     },
+    "computer-use-linux": {
+      "type": "local",
+      "command": ["computer-use-linux", "mcp"],
+      "enabled": true
+    },
     "semgrep": {
       "type": "local",
       "command": [
